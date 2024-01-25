@@ -1,10 +1,7 @@
-
 import fastapi
 from fastapi.responses import RedirectResponse
 
 app = fastapi.FastAPI()
-
-
 
 info = dict()
 
@@ -12,6 +9,7 @@ info = dict()
 @app.get("/")
 async def read_root():
     return {"message": "Ahla bi Nakhle"}
+
 
 @app.get("/expired")
 async def exp():
@@ -21,6 +19,7 @@ async def exp():
 @app.get("/fetch-url/{name}/")
 async def fetch_url(name: str):
     answer = validate(name)
+    print(answer, "hello")
     if not answer:
         return RedirectResponse(url="/expired")
     url_path = info.get(name, "Hello")
@@ -30,8 +29,9 @@ async def fetch_url(name: str):
     # return {"message": f"Fetching data from URL: {url_path}"}
 
 
-async def validate(name):
+def validate(name):
     name = name.lower()
+    print("name is", name)
     if name == "teki":
         return False
     return True
