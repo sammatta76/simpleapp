@@ -1,0 +1,4 @@
+.venv
+.platform.app.yaml
+.platform
+maintest.py
